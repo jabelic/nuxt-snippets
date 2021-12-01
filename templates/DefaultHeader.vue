@@ -1,7 +1,6 @@
 <template>
-  <div id="index" class="d-flex">hogehuga</div>
+  <div></div>
 </template>
-
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
 
@@ -9,3 +8,4 @@ export default defineComponent({
   setup() {},
 })
 </script>
+<style lang="sass" scoped></style>

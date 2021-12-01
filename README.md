@@ -1,4 +1,4 @@
-# mqSample
+# nuxt-snippets
 
 ## Build Setup
 

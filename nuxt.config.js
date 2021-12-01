@@ -1,4 +1,6 @@
 import colors from 'vuetify/es5/util/colors'
+import Sass from 'sass'
+import Fiber from 'fibers'
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -6,8 +8,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - mqSample',
-    title: 'mqSample',
+    titleTemplate: '%s - nuxt-snippets',
+    title: 'nuxt-snippets',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -15,16 +17,27 @@ export default {
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    // CDN jquery
+    script: [
+      {
+        // src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js',
+        src: 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js',
+        // async: true,
+        // defer: true,
+        // body: true,
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['@/plugins/MathQuill/mathquill.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [{ src: '~/plugins/MathQuill/mathquill', ssr: false }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  // components: true,
+  components: ['@/components', '@/templates'], // Auto import の設定
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -73,5 +86,15 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    // transpile: ['mathquill'],
+    loaders: {
+      scss: {
+        implementation: Sass,
+        sassOptions: {
+          fiber: Fiber,
+        },
+      },
+    },
+  },
 }
