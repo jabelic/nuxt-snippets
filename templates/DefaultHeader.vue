@@ -14,7 +14,7 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .header {
-  background-color: aquamarine;
+  background-color: burlywood;
   display: flex;
   height: 40px;
   min-width: 50px;
