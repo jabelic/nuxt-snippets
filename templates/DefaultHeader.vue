@@ -1,7 +1,9 @@
 <template>
   <div id="default-header">
     <header>
-      <div class="header d-flex flex-row"></div>
+      <div class="header d-flex flex-row">
+        <h3>Nuxt-snippets</h3>
+      </div>
     </header>
   </div>
 </template>

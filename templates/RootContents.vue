@@ -10,6 +10,12 @@
           >input parts</v-btn
         >
       </div>
+
+      <div class="d-flex flex-column mb-6 justify-center">
+        <v-btn to="/parts/vtreePage" color="pink" width="50%"
+          >v-treeview parts</v-btn
+        >
+      </div>
     </v-container>
   </div>
 </template>
