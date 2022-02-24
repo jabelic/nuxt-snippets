@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@nuxtjs/composition-api'
+import { defineComponent } from '@nuxtjs/composition-api'
 export default defineComponent({
   setup() {
     return {}
@@ -24,8 +24,9 @@ export default defineComponent({
 </script>
 <style scoped>
 h1 {
-  padding-bottom: 0.5em;
-  border-bottom: 3px double #ccc;
-  margin: 1em 0;
+  padding: 0.25em 0 0.5em 0.75em;
+  border-left: 6px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  margin: 10px 0;
 }
 </style>

@@ -6,17 +6,32 @@
         :readonly="$attrs.readonly"
         :label="$attrs.label"
         :placeholder="$attrs.placeholder"
+        @input="$emit('setInputText', $event)"
       />
     </div>
     <div v-else-if="inputmode === 'rawinput'" class="rawinput">
-      <input type="text" class="input_snipetts" />
+      <input
+        type="text"
+        v-model="inputValue.case1"
+        class="input_snipetts"
+        :readonly="$attrs.readonly"
+        :label="$attrs.label"
+        :placeholder="$attrs.placeholder"
+      />
     </div>
 
     <div v-else-if="inputmode === 'googleInput'" class="google-design-input">
       <label for="text2">text2</label>
       <div class="search_bar">
         <i class="fas fa-search search_icon"></i>
-        <input id="text2" type="text" placeholder="キーワードを入力" />
+        <input
+          id="text2"
+          type="text"
+          v-model="inputValue.case2"
+          :readonly="$attrs.readonly"
+          :label="$attrs.label"
+          :placeholder="$attrs.placeholder"
+        />
         <i class="fas fa-times search_icon"></i>
       </div>
     </div>
@@ -24,11 +39,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+import {
+  defineComponent,
+  PropType,
+  watch,
+  getCurrentInstance,
+  reactive,
+} from '@nuxtjs/composition-api'
 export default defineComponent({
   props: {
     values: {
-      type: String,
+      type: String as PropType<string | undefined>,
+      required: true,
     },
     inputmode: {
       type: String,
@@ -36,7 +58,22 @@ export default defineComponent({
       defalut: 'vuetify',
     },
   },
-  setup() {},
+  setup(props, {}) {
+    /** @input="$emit('setInputText', $event, 1)" のようにして
+     * valueを直接親SFCのリアクティブな変数にバインドできるのは v-text-fieldだけ（？）
+     * 他はcomponent側でも状態をもたないといけない。*/
+    const inputValue = reactive({ case1: '', case2: '' })
+    const root = getCurrentInstance()
+    /** inputのvalueのsync */
+    watch(
+      () => [inputValue.case1, inputValue.case2],
+      ([newVal1, newVal2]) => {
+        if (newVal1) root?.emit('setInputText', 1, newVal1)
+        else if (newVal2) root?.emit('setInputText', 2, newVal2)
+      }
+    )
+    return { inputValue }
+  },
 })
 </script>
 <style scoped>
