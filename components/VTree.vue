@@ -1,11 +1,12 @@
 <template>
   <div>
+    <div class="d-flex flex-column mb-6 justify-center">
+      <v-btn to="/" color="pink" width="50%">return index</v-btn>
+    </div>
     <v-card>
       <v-card-title class="indigo white--text text-h5">
         User Directory
       </v-card-title>
-      <!-- <v-row class="pa-4" justify="space-between"> -->
-      <!-- <v-col cols="5"> -->
       <!-- 
         :items="items" : treeviewに渡す配列情報
         activatable: クリックしたrowがアクティブになる(色がつく)
@@ -17,11 +18,14 @@
         :active.sync="active"
         :open.sync="open"
         :load-children="fetchUsers": クリックをした
+        return-object : これを追加しておくとopenとactiveで返ってくる配列の要素が[object]になる. objectは格納されている要素丸々。
+          - return-objectがfalseだと, openとactiveはitem-keyが返ってくる
        -->
       <v-treeview
         activatable
         color="warning"
         open-on-click
+        return-object
         :items="items"
         :open.sync="open"
         :active.sync="active"
@@ -31,8 +35,6 @@
           <v-icon v-if="!item.children"> mdi-account </v-icon>
         </template>
       </v-treeview>
-      <!-- </v-col> -->
-      <!-- </v-row> -->
     </v-card>
   </div>
 </template>
@@ -65,7 +67,11 @@ export default defineComponent({
         id: item.id + 101,
         contentsName: 'hogehuga',
         folderId: 19,
-        children: [],
+        contents: {
+          folderId: item.id + 101,
+          id: item.id + 10,
+          title: 'Hoge',
+        },
       })
     }
     const active = ref<any>([])
@@ -74,12 +80,6 @@ export default defineComponent({
     const tree = ref([])
     const users = ref([])
     const items = ref(dummyData1)
-    watch(
-      () => tree.value,
-      (item) => {
-        console.debug('tree', item)
-      }
-    )
     /**
      * :active.sync="active"
      * activeは選択した(activeな)コンテンツのidを格納したリアクティブなobjectが帰ってくる？
@@ -98,7 +98,7 @@ export default defineComponent({
      * 歴代に開いたfolderのidが返ってくる、順番がおかしいw
      * open (2) [19, 20, __ob__: Observer]：20が今開いたfolderのid
      * open (3) [20, 19, 23, __ob__: Observer]：23が開いたfolderのid
-     * 
+     *
      * 順に開いたら
      * open [19, __ob__: Observer] 19 object
        open (2) [19, 20, __ob__: Observer] 19 object
@@ -106,6 +106,8 @@ export default defineComponent({
        open (4) [23, 20, 19, 124, __ob__: Observer] 23 object
        open (5) [124, 23, 20, 19, 225, __ob__: Observer] 124 object
      * となる
+     閉じるとidが消される。つまり、開いているfolderのidが古い順に格納されている。
+     例え7-5-6の7を閉じたとて、5-6は消えない。だから7をもう一回開いた時も5-6は開いたまま。
      */
     watch(
       () => open.value,
