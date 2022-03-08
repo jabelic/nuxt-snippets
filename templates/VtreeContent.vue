@@ -2,7 +2,7 @@
   <div>
     <DefaultHeader />
     <v-container>
-      <h1>Nuxt Snippets - Input</h1>
+      <h1>Nuxt Snippets - v-treeview</h1>
       <VTree />
     </v-container>
   </div>
