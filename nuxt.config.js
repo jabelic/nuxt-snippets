@@ -2,6 +2,10 @@ import colors from 'vuetify/es5/util/colors'
 import Sass from 'sass'
 
 export default {
+  server: {
+    // port: 3000, // デフォルト: 3000
+    host: '0.0.0.0' // デフォルト: localhost
+  },
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
@@ -32,7 +36,7 @@ export default {
   css: ['@/plugins/MathQuill/mathquill.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '~/plugins/MathQuill/mathquill', ssr: false }],
+  plugins: [{ src: '@/plugins/MathQuill/mathquill', ssr: false }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   // components: true,

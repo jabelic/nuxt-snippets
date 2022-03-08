@@ -37,6 +37,16 @@
             @setInputText="syncInputText"
           />
         </div>
+        <div class="mb-6 justify-center input-margin">
+          Inputs: {{ inputValue.case4 }}
+          <Inputs
+            inputmode="mathquill"
+            :values="inputValue.case4"
+            label="Tweet!"
+            placeholder="今何してる？"
+            @setInputText="syncInputText"
+          />
+        </div>
       </div>
     </v-container>
   </div>
@@ -46,7 +56,7 @@ import { defineComponent, reactive } from '@nuxtjs/composition-api'
 
 export default defineComponent({
   setup() {
-    const inputValue = reactive({ case1: '', case2: '', case3: '' })
+    const inputValue = reactive({ case1: '', case2: '', case3: '', case4: '' })
     const setInputText = (args: string) => {
       inputValue.case1 = args
     }

@@ -21,7 +21,7 @@
     </div>
 
     <div v-else-if="inputmode === 'googleInput'" class="google-design-input">
-      <label for="text2">text2</label>
+      <!-- <label for="text2">text2</label> -->
       <div class="search_bar">
         <i class="fas fa-search search_icon"></i>
         <input
@@ -35,6 +35,10 @@
         <i class="fas fa-times search_icon"></i>
       </div>
     </div>
+    <div v-else-if="inputmode === 'mathquill'">
+      <!-- <label for="text2">text2</label> -->
+      <p><span id="answer_mq">x=</span></p>
+    </div>
   </div>
 </template>
 
@@ -45,6 +49,7 @@ import {
   watch,
   getCurrentInstance,
   reactive,
+  nextTick,
 } from '@nuxtjs/composition-api'
 export default defineComponent({
   props: {
@@ -72,6 +77,18 @@ export default defineComponent({
         else if (newVal2) root?.emit('setInputText', 2, newVal2)
       }
     )
+    nextTick(() => {
+      var MQ = MathQuill.getInterface(2)
+      var answerSpan = document.getElementById('answer_mq')
+      var answerMathField = MQ.MathField(answerSpan, {
+        handlers: {
+          edit: function () {
+            var enteredMath = answerMathField.latex() // Get entered math in LaTeX format
+            // checkAnswer(enteredMath)
+          },
+        },
+      })
+    })
     return { inputValue }
   },
 })
