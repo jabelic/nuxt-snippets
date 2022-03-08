@@ -3,6 +3,9 @@
     <DefaultHeader />
     <v-container>
       <h1>Nuxt Snippets - v-treeview</h1>
+      <div class="d-flex my-6 justify-center">
+        <v-btn to="/" color="pink" width="50%">return index</v-btn>
+      </div>
       <VTree />
     </v-container>
   </div>

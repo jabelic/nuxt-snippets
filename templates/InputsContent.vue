@@ -3,7 +3,7 @@
     <DefaultHeader />
     <v-container>
       <h1>Nuxt Snippets - Input</h1>
-      <div class="d-flex flex-column mb-6 justify-center">
+      <div class="d-flex mb-6 justify-center">
         <v-btn to="/" color="pink" width="50%">return index</v-btn>
       </div>
       <div class="contents">

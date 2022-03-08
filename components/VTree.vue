@@ -1,8 +1,5 @@
 <template>
   <div>
-    <div class="d-flex flex-column mb-6 justify-center">
-      <v-btn to="/" color="pink" width="50%">return index</v-btn>
-    </div>
     <v-card>
       <v-card-title class="indigo white--text text-h5">
         User Directory
