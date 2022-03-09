@@ -25,8 +25,16 @@ $ yarn generate
 - [x] mathquill
 - [x] v-treeview
 - [x] keep-alive
-- [ ] provide/inject
+- [x] provide/inject
 - [ ] nuxt-child
+- [ ] v-skeleton
+- [ ] new Vue
+- [ ] serverMiddleware
+- [ ] nuxtServerInit
+- [ ] validate
+- [ ] asyncData
+- [ ] pinia(store)
+- [ ] e2e test
 
 
 
