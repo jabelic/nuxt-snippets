@@ -19,6 +19,17 @@
           >Provide/Inject parts</v-btn
         >
       </div>
+      <div class="d-flex mb-6 justify-center">
+        <v-btn to="/parts/Lifecycle" color="pink" width="50%">LifeCycle</v-btn>
+      </div>
+      <div class="d-flex mb-6 justify-center">
+        <v-btn to="/nuxtChild/Lout" class="mx-1" color="pink" width="25%"
+          >NuxtChild - index</v-btn
+        >
+        <v-btn to="/nuxtChild/Lout/9" class="mx-1" color="pink" width="25%"
+          >NuxtChild - _id</v-btn
+        >
+      </div>
     </v-container>
   </div>
 </template>
