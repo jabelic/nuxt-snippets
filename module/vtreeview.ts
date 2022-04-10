@@ -39,30 +39,4 @@ export const dummyData1 = [
       },
     ],
   },
-  // {
-  //   id: 15,
-  //   name: 'Downloads :',
-  //   children: [
-  //     { id: 16, name: 'October : pdf' },
-  //     { id: 17, name: 'November : pdf' },
-  //     { id: 18, name: 'Tutorial : html' },
-  //   ],
-  // },
-  // {
-  //   id: 19,
-  //   name: 'Videos :',
-  //   children: [
-  //     {
-  //       id: 20,
-  //       name: 'Tutorials :',
-  //       children: [
-  //         { id: 21, name: 'Basic layouts : mp4' },
-  //         { id: 22, name: 'Advanced techniques : mp4' },
-  //         { id: 23, name: 'All about app : dir', children: [] },
-  //       ],
-  //     },
-  //     { id: 24, name: 'Intro : mov' },
-  //     { id: 25, name: 'Conference introduction : avi' },
-  //   ],
-  // },
 ]
