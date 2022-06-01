@@ -17,8 +17,6 @@ $ yarn start
 $ yarn generate
 ```
 
-
-
 ## TODO
 
 - [x] input
@@ -26,24 +24,19 @@ $ yarn generate
 - [x] v-treeview
 - [x] keep-alive
 - [x] provide/inject
-- [ ] nuxt-child
-- [ ] v-skeleton
-- [ ] new Vue
+- [x] nuxt-child
+- [ ] CRUD
+- [ ] pinia(store)
+- [ ] e2e test
+- [ ] Microsoft Clarity
 - [ ] serverMiddleware
 - [ ] nuxtServerInit
 - [ ] validate
 - [ ] asyncData
-- [ ] pinia(store)
-- [ ] e2e test
-
-
-
-
-
-
+- [ ] new Vue
+- [ ] v-skeleton
 
 <!-- For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org). -->
-
 
 <!-- ## Special Directories
 

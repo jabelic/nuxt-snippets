@@ -4,7 +4,7 @@ import Sass from 'sass'
 export default {
   server: {
     port: 3300, // デフォルト: 3000
-    host: '0.0.0.0' // デフォルト: localhost
+    host: '0.0.0.0', // デフォルト: localhost
   },
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -59,7 +59,7 @@ export default {
     '@nuxtjs/pwa',
   ],
   router: {
-    middleware: 'sample'
+    middleware: 'sample',
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -67,7 +67,7 @@ export default {
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
-    manifest:{
+    manifest: {
       lang: 'en',
     },
   },

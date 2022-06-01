@@ -14,7 +14,7 @@ export default defineComponent({
 })
 </script>
 <style scoped>
-.btns{
+.btns {
   text-transform: none;
 }
 </style>

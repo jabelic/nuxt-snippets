@@ -30,6 +30,9 @@
           >NuxtChild - _id</v-btn
         >
       </div>
+      <div class="d-flex mb-6 justify-center">
+        <v-btn to="/parts/todos" color="pink" width="50%">TODO(CRUD)</v-btn>
+      </div>
     </v-container>
   </div>
 </template>
