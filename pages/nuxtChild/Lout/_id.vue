@@ -17,7 +17,7 @@
       </v-list-item>
 
       <v-card-actions>
-        <v-btn outlined rounded text> Button </v-btn>
+        <v-btn class="btns" outlined rounded text to="/nuxtChild/Lout"> To: /nuxtChild/Lout </v-btn>
       </v-card-actions>
     </v-card>
   </div>
@@ -29,4 +29,8 @@ export default defineComponent({
   setup() {},
 })
 </script>
-<style scoped></style>
+<style scoped>
+.btns{
+  text-transform: none;
+}
+</style>

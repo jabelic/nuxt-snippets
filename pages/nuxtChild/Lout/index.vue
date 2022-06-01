@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="d-flex flex-column">
-      <v-btn>HOGE</v-btn>
-      <v-btn to="/nuxtChild/Lout/9">HOGE</v-btn>
+      <v-btn class="btns">hoge</v-btn>
+      <v-btn class="btns" to="/nuxtChild/Lout/9">To : nuxtChild/Lout/9</v-btn>
     </div>
   </div>
 </template>
@@ -13,4 +13,8 @@ export default defineComponent({
   setup() {},
 })
 </script>
-<style scoped></style>
+<style scoped>
+.btns{
+  text-transform: none;
+}
+</style>
