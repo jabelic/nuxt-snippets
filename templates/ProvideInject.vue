@@ -4,7 +4,13 @@
     <v-container class="">
       <h1>Nuxt Snippets - Provide/Inject</h1>
       <div class="d-flex my-6 justify-center">
-        <v-btn to="/" color="pink" width="50%">return index</v-btn>
+        <v-btn
+          to="/"
+          color="pink"
+          width="50%"
+        >
+          return index
+        </v-btn>
       </div>
       <div class="contents">
         <div class="d-flex my-4 justify-center">
@@ -27,11 +33,11 @@ import { CounterStore, key } from '~/module/stateProvider'
 import CounterForPI from '~/components/CounterForPI.vue'
 
 export default defineComponent({
+  components: { CounterForPI },
   setup() {
     const { state, increment, decrement } = inject(key) as CounterStore
     return { state, increment, decrement }
   },
-  components: { CounterForPI },
 })
 </script>
 <style scoped>

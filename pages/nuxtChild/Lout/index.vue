@@ -1,8 +1,15 @@
 <template>
   <div>
     <div class="d-flex flex-column">
-      <v-btn class="btns">hoge</v-btn>
-      <v-btn class="btns" to="/nuxtChild/Lout/9">To : nuxtChild/Lout/9</v-btn>
+      <v-btn class="btns">
+        hoge
+      </v-btn>
+      <v-btn
+        class="btns"
+        to="/nuxtChild/Lout/9"
+      >
+        To : nuxtChild/Lout/9
+      </v-btn>
     </div>
   </div>
 </template>

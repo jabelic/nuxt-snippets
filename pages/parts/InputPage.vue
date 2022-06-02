@@ -8,8 +8,8 @@ import { defineComponent } from '@nuxtjs/composition-api'
 import InputsContent from '~/templates/InputsContent.vue'
 
 export default defineComponent({
-  setup() {},
   components: { InputsContent },
+  setup() {},
 })
 </script>
 <style scoped></style>

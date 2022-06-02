@@ -8,8 +8,8 @@ import { defineComponent } from '@nuxtjs/composition-api'
 import ParentLayout from '~/templates/ParentLayout.vue'
 
 export default defineComponent({
-  setup() {},
   components: { ParentLayout },
+  setup() {},
 })
 </script>
 <style scoped></style>

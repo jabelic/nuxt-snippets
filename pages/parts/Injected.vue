@@ -8,8 +8,8 @@ import { defineComponent } from '@nuxtjs/composition-api'
 import ProvideInject from '~/templates/ProvideInject.vue'
 
 export default defineComponent({
-  setup() {},
   components: { ProvideInject },
+  setup() {},
 })
 </script>
 <style scoped></style>

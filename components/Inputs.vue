@@ -1,6 +1,9 @@
 <template>
   <div id="inputs">
-    <div v-if="inputmode === 'vuetify'" class="using-vuetify">
+    <div
+      v-if="inputmode === 'vuetify'"
+      class="using-vuetify"
+    >
       <v-text-field
         :value="values"
         :readonly="$attrs.readonly"
@@ -9,30 +12,36 @@
         @input="$emit('setInputText', $event)"
       />
     </div>
-    <div v-else-if="inputmode === 'rawinput'" class="rawinput">
+    <div
+      v-else-if="inputmode === 'rawinput'"
+      class="rawinput"
+    >
       <input
-        type="text"
         v-model="inputValue.case1"
+        type="text"
         class="input_snipetts"
         :readonly="$attrs.readonly"
         :label="$attrs.label"
         :placeholder="$attrs.placeholder"
-      />
+      >
     </div>
 
-    <div v-else-if="inputmode === 'googleInput'" class="google-design-input">
+    <div
+      v-else-if="inputmode === 'googleInput'"
+      class="google-design-input"
+    >
       <!-- <label for="text2">text2</label> -->
       <div class="search_bar">
-        <i class="fas fa-search search_icon"></i>
+        <i class="fas fa-search search_icon" />
         <input
           id="text2"
-          type="text"
           v-model="inputValue.case2"
+          type="text"
           :readonly="$attrs.readonly"
           :label="$attrs.label"
           :placeholder="$attrs.placeholder"
-        />
-        <i class="fas fa-times search_icon"></i>
+        >
+        <i class="fas fa-times search_icon" />
       </div>
     </div>
     <div v-else-if="inputmode === 'mathquill'">
@@ -66,7 +75,7 @@ export default defineComponent({
   setup(props, {}) {
     /** @input="$emit('setInputText', $event, 1)" のようにして
      * valueを直接親SFCのリアクティブな変数にバインドできるのは v-text-fieldだけ（？）
-     * 他はcomponent側でも状態をもたないといけない。*/
+     * 他はcomponent側でも状態をもたないといけない。 */
     const inputValue = reactive({ case1: '', case2: '' })
     const root = getCurrentInstance()
     /** inputのvalueのsync */
@@ -78,12 +87,12 @@ export default defineComponent({
       }
     )
     nextTick(() => {
-      var MQ = MathQuill.getInterface(2)
-      var answerSpan = document.getElementById('answer_mq')
-      var answerMathField = MQ.MathField(answerSpan, {
+      const MQ = MathQuill.getInterface(2)
+      const answerSpan = document.getElementById('answer_mq')
+      const answerMathField = MQ.MathField(answerSpan, {
         handlers: {
-          edit: function () {
-            var enteredMath = answerMathField.latex() // Get entered math in LaTeX format
+          edit() {
+            const enteredMath = answerMathField.latex() // Get entered math in LaTeX format
             // checkAnswer(enteredMath)
           },
         },

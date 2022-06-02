@@ -49,6 +49,7 @@ export default {
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    ['@pinia/nuxt', { disableVuex: false }], // 追加
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
