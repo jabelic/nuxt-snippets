@@ -29,9 +29,7 @@
         :load-children="fetchUsers"
       >
         <template #prepend="{ item }">
-          <v-icon v-if="!item.children">
-            mdi-account
-          </v-icon>
+          <v-icon v-if="!item.children"> mdi-account </v-icon>
         </template>
       </v-treeview>
     </v-card>
@@ -52,7 +50,7 @@ export default defineComponent({
     ])
     const pause = (ms: number) =>
       new Promise((resolve) => setTimeout(resolve, ms))
-    const fetchUsers = async(item: any) => {
+    const fetchUsers = async (item: any) => {
       await pause(1500)
       item.children.push({
         name: 'name',

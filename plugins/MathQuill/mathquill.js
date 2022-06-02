@@ -3608,7 +3608,8 @@ JS environment could actually contain many instances. */
     '&there4;'
   )
 
-  LatexCmds.cuz = LatexCmds.because = bind( // l33t
+  LatexCmds.cuz = LatexCmds.because = bind(
+    // l33t
     BinaryOperator,
     '\\because ',
     '&#8757;'
@@ -4266,9 +4267,11 @@ case '!':
       BuiltInOpNames[mostOps[i]] = AutoOpNames[mostOps[i]] = 1
     }
 
-    var builtInTrigs = 'sin cos tan arcsin arccos arctan sinh cosh tanh sec csc cot coth'.split( // why coth but not sech and csch, LaTeX?
-      ' '
-    )
+    var builtInTrigs =
+      'sin cos tan arcsin arccos arctan sinh cosh tanh sec csc cot coth'.split(
+        // why coth but not sech and csch, LaTeX?
+        ' '
+      )
     for (var i = 0; i < builtInTrigs.length; i += 1) {
       BuiltInOpNames[builtInTrigs[i]] = 1
     }
@@ -4412,7 +4415,8 @@ case '!':
 
   LatexCmds.epsilon = bind(Variable, '\\epsilon ', '&#1013;') //W3C or Unicode?
 
-  LatexCmds.epsiv = LatexCmds.varepsilon = bind( //Elsevier and 9573-13 //AMS and LaTeX
+  LatexCmds.epsiv = LatexCmds.varepsilon = bind(
+    //Elsevier and 9573-13 //AMS and LaTeX
     Variable,
     '\\varepsilon ',
     '&epsilon;'
@@ -4438,7 +4442,8 @@ case '!':
     LatexCmds.digamma = //LaTeX
       bind(Variable, '\\digamma ', '&#989;')
 
-  LatexCmds.kappav = LatexCmds.varkappa = bind( //Elsevier //AMS and LaTeX
+  LatexCmds.kappav = LatexCmds.varkappa = bind(
+    //Elsevier //AMS and LaTeX
     Variable,
     '\\varkappa ',
     '&#1008;'
@@ -5549,7 +5554,8 @@ case '!':
     _.createLeftOf = LiveFraction.prototype.createLeftOf
   }))
 
-  LatexCmds.editable = LatexCmds.MathQuillMathField = P( // backcompat with before cfd3620 on #233
+  LatexCmds.editable = LatexCmds.MathQuillMathField = P(
+    // backcompat with before cfd3620 on #233
     MathCommand,
     function (_, super_) {
       _.ctrlSeq = '\\MathQuillMathField'

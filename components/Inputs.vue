@@ -1,9 +1,6 @@
 <template>
   <div id="inputs">
-    <div
-      v-if="inputmode === 'vuetify'"
-      class="using-vuetify"
-    >
+    <div v-if="inputmode === 'vuetify'" class="using-vuetify">
       <v-text-field
         :value="values"
         :readonly="$attrs.readonly"
@@ -12,10 +9,7 @@
         @input="$emit('setInputText', $event)"
       />
     </div>
-    <div
-      v-else-if="inputmode === 'rawinput'"
-      class="rawinput"
-    >
+    <div v-else-if="inputmode === 'rawinput'" class="rawinput">
       <input
         v-model="inputValue.case1"
         type="text"
@@ -23,13 +17,10 @@
         :readonly="$attrs.readonly"
         :label="$attrs.label"
         :placeholder="$attrs.placeholder"
-      >
+      />
     </div>
 
-    <div
-      v-else-if="inputmode === 'googleInput'"
-      class="google-design-input"
-    >
+    <div v-else-if="inputmode === 'googleInput'" class="google-design-input">
       <!-- <label for="text2">text2</label> -->
       <div class="search_bar">
         <i class="fas fa-search search_icon" />
@@ -40,7 +31,7 @@
           :readonly="$attrs.readonly"
           :label="$attrs.label"
           :placeholder="$attrs.placeholder"
-        >
+        />
         <i class="fas fa-times search_icon" />
       </div>
     </div>

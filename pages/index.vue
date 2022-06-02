@@ -1,8 +1,5 @@
 <template>
-  <div
-    id="index"
-    class=""
-  >
+  <div id="index" class="">
     <RootContents />
   </div>
 </template>

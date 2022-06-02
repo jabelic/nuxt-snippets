@@ -33,7 +33,7 @@ export default defineComponent({
         setTimeout(() => resolve(() => {}), 1000)
       })
     }
-    const { $fetch, $fetchState } = useFetch(async() => {
+    const { $fetch, $fetchState } = useFetch(async () => {
       console.debug('useFetch')
       await sleep()
     })

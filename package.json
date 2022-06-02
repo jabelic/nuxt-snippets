@@ -10,7 +10,8 @@
     "generate": "nuxt generate",
     "lint:js": "eslint --ext \".ts,.vue\" --ignore-path .gitignore .",
     "lint": "yarn lint:js",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
@@ -49,7 +50,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn prettier"
+      "pre-commit": "npx prettier -w"
     }
   }
 }
