@@ -4,8 +4,7 @@
     <div id="task_lists">
       <div v-for="board of boards" class="board" :key="board.id">
         <div class="tasks">
-          <div v-for="item of board.tasks" :key="item.id">
-            <div draggable="true" class="task_card">
+          <div v-for="item of board.tasks" :key="item.id" draggable="true" class="task_card">
               <div class="todo_complete_btn">
                 <input
                   @change="changeStatus(board.id, item.id, $event)"
@@ -15,8 +14,8 @@
               <div>
                 {{ item.title }}
               </div>
-              <div>
-                <button type="button" class="btn">
+              <div class="trash_btn">
+                <button type="button">
                   <span class="todo_delete_btn">
                     <svg style="width: 24px; height: 24px" viewBox="0 0 24 20">
                       <path
@@ -27,7 +26,6 @@
                   </span>
                 </button>
               </div>
-            </div>
           </div>
         </div>
         <form class="add_task_form">
@@ -62,6 +60,10 @@ export default defineComponent({
     const changeStatus = (boardId: number, id: number, done: boolean) => {
       todoStore.changeStatus(boardId, id, done)
     }
+    const deleteTask= (boardId: number, id: number)=>{
+      // snackbarを表示
+
+    }
     return { boards, addTask, changeStatus, newTasks }
   },
 })
@@ -94,14 +96,17 @@ export default defineComponent({
   align-items: center;
   cursor: move;
 }
-.task_card:last-child {
-  margin-left: auto;
-}
 .todo_complete_btn {
   margin: 3%;
 }
 .todo_delete_btn {
   margin-left: auto;
+}
+.trash_btn{
+  margin-left: auto;
+  border-radius: 1%;
+  border-width: 1rem;
+  border: red;
 }
 
 .add_task_form {

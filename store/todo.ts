@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { __boards__ } from '~/module/__mocks__/todo'
+import { useTodoArchiveStore } from './todoArchive'
 
 export const useTodoStore = defineStore('todo', {
   state: () => ({ boards: __boards__ }),
@@ -29,6 +30,14 @@ export const useTodoStore = defineStore('todo', {
         }
       })
     },
+    deleteTask(boardId: number, id: number){
+      const deletedTask = this.boards[boardId].tasks.find((it)=>it.id===id)
+      const archive = useTodoArchiveStore()
+      if(deletedTask){
+        archive.addArchivedTask(boardId, deletedTask)
+        this.boards[boardId].tasks.filter((it)=>it.id!==id)
+      }
+    }
   },
   getters: {
     finishedTodos(state) {
