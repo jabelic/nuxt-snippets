@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+yarn prettier -w "{src,test}/**/{*.vue,*.js}"
+git add .
+git commit -m "PRETTIER in pre push"
