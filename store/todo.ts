@@ -8,7 +8,7 @@ export const useTodoStore = defineStore('todo', {
     addTask(baordId: number, title: string) {
       this.boards.forEach((board) => {
         if (baordId === board.id) {
-          board.tasks.push({ id: board.tasks.length, done: false, title })
+          board.tasks.push({ id: board.tasks.length, done: false, title, tag:[] })
         }
       })
     },
@@ -35,21 +35,20 @@ export const useTodoStore = defineStore('todo', {
       const archive = useTodoArchiveStore()
       if(deletedTask){
         archive.addArchivedTask(boardId, deletedTask)
-        this.boards[boardId].tasks.filter((it)=>it.id!==id)
+        this.boards[boardId].tasks = this.boards[boardId].tasks.filter((it)=>it.id!==id)
       }
     }
   },
   getters: {
     finishedTodos(state) {
       // autocompletion! ✨
-      return state.boards.filter((board) =>
-        board.tasks.filter((task) => task.done)
-      )
+      return state.boards.filter((board) => board.tasks.filter((task) => task.done))
     },
     unfinishedTodos(state) {
-      return state.boards.filter((board) =>
-        board.tasks.filter((task) => !task.done)
-      )
+      return state.boards.filter((board) =>board.tasks.filter((task) => !task.done))
     },
+    allBoards(state){
+      return state.boards
+    }
   },
 })

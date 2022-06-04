@@ -1,31 +1,12 @@
 <template>
   <div>
     <DefaultHeader />
+    <h1>よくあるTodo List</h1>
     <div id="task_lists">
       <div v-for="board of boards" class="board" :key="board.id">
         <div class="tasks">
-          <div v-for="item of board.tasks" :key="item.id" draggable="true" class="task_card">
-              <div class="todo_complete_btn">
-                <input
-                  @change="changeStatus(board.id, item.id, $event)"
-                  type="checkbox"
-                />
-              </div>
-              <div>
-                {{ item.title }}
-              </div>
-              <div class="trash_btn">
-                <button type="button">
-                  <span class="todo_delete_btn">
-                    <svg style="width: 24px; height: 24px" viewBox="0 0 24 20">
-                      <path
-                        fill="currentColor"
-                        d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8,9H16V19H8V9M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
-                      />
-                    </svg>
-                  </span>
-                </button>
-              </div>
+          <div v-for="item of board.tasks" :key="item.id" draggable="true">
+              <Task :item="item" :board="board" :change-status="changeStatus" :delete-task="deleteTask" @changeTitle="changeTitle" class="task_card"/>
           </div>
         </div>
         <form class="add_task_form">
@@ -41,31 +22,44 @@
   </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, ref } from '@nuxtjs/composition-api'
+import { computed, defineComponent, ref, watch } from '@nuxtjs/composition-api'
 import { __boards__ } from '~/module/__mocks__/todo'
 import { useTodoStore } from '~/store/todo'
+import { useTodoArchiveStore } from '~/store/todoArchive'
+import Task from '~/components/Task.vue'
 
 export default defineComponent({
-  setup() {
-    const todoStore = useTodoStore()
-    const boards = ref(todoStore.boards)
-    const newTasks = computed(() =>
-      [...Array(__boards__.length)].map((_, i) => '')
-    )
-    const addTask = (boardId: number) => {
-      if (!newTasks.value[boardId]) return
-      todoStore.addTask(boardId, newTasks.value[boardId])
-      newTasks.value[boardId] = ''
-    }
-    const changeStatus = (boardId: number, id: number, done: boolean) => {
-      todoStore.changeStatus(boardId, id, done)
-    }
-    const deleteTask= (boardId: number, id: number)=>{
-      // snackbarを表示
-
-    }
-    return { boards, addTask, changeStatus, newTasks }
-  },
+    setup() {
+        const todoStore = useTodoStore();
+        const archive = useTodoArchiveStore();
+        const boards = ref(todoStore.boards);
+        const newTasks = computed(() => [...Array(__boards__.length)].map((_, i) => ""));
+        const addTask = (boardId: number) => {
+            if (!newTasks.value[boardId])
+                return;
+            todoStore.addTask(boardId, newTasks.value[boardId]);
+            newTasks.value[boardId] = "";
+        };
+        const changeStatus = (boardId: number, id: number, done: boolean) => {
+            todoStore.changeStatus(boardId, id, done);
+        };
+        const deleteTask = (boardId: number, id: number) => {
+            // TODO: snackbarを表示
+            todoStore.deleteTask(boardId, id);
+            boards.value = todoStore.boards;
+            console.debug(boards.value[0]);
+        };
+        const changeTitle = (boardId: number, id: number, title: string)=>{
+          console.debug("sdfchangeTitle")
+          todoStore.changeTitle(boardId, id, title);
+          boards.value = todoStore.boards;
+        }
+        watch(()=>todoStore.allBoards, ()=>{
+          boards.value = todoStore.boards;
+        }, {deep:true})
+        return { boards, addTask, changeStatus, newTasks, deleteTask, changeTitle };
+    },
+    components: { Task }
 })
 </script>
 <style scoped>
@@ -78,14 +72,14 @@ export default defineComponent({
   margin: 0.5%;
   justify-content: center;
   text-align: center;
-  width: 30%;
+  width: 25%;
   background: #222222;
   border-radius: 5px;
   overflow-y: scroll;
   /* box-shadow:1px 1px 1px 1px #ccc; */
 }
 .tasks {
-  max-height: 100vh;
+  max-height: 80vh;
   overflow-y: scroll;
 }
 /* ボード内の各taskカード */
@@ -96,18 +90,7 @@ export default defineComponent({
   align-items: center;
   cursor: move;
 }
-.todo_complete_btn {
-  margin: 3%;
-}
-.todo_delete_btn {
-  margin-left: auto;
-}
-.trash_btn{
-  margin-left: auto;
-  border-radius: 1%;
-  border-width: 1rem;
-  border: red;
-}
+
 
 .add_task_form {
   background-color: wheat;
@@ -120,7 +103,6 @@ export default defineComponent({
   border-radius: 5px;
   background-color: rgba(10, 128, 10, 1);
   text-align: center;
-  color: white;
   margin: 5px;
 }
 .btn:active {
