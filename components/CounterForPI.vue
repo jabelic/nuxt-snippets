@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="d-flex justify-center">
-      <v-btn @click="$emit('increment')">+</v-btn>
-      <v-btn @click="$emit('decrement')">-</v-btn>
+      <v-btn @click="$emit('increment')"> + </v-btn>
+      <v-btn @click="$emit('decrement')"> - </v-btn>
     </div>
   </div>
 </template>

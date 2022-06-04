@@ -4,7 +4,7 @@
       <v-card-title class="indigo white--text text-h5">
         User Directory
       </v-card-title>
-      <!-- 
+      <!--
         :items="items" : treeviewに渡す配列情報
         activatable: クリックしたrowがアクティブになる(色がつく)
           - color="warning" : アクティブなrow(ツリービューノード)に色がつく
@@ -28,7 +28,7 @@
         :active.sync="active"
         :load-children="fetchUsers"
       >
-        <template v-slot:prepend="{ item }">
+        <template #prepend="{ item }">
           <v-icon v-if="!item.children"> mdi-account </v-icon>
         </template>
       </v-treeview>
