@@ -4,11 +4,11 @@
     <h1>よくあるTodo List</h1>
     <div id="task_lists">
       <div v-for="board of boards" class="board" :key="board.id">
-        <div class="tasks">
-          <div v-for="item of board.tasks" :key="item.id" draggable="true">
+        <ol class="tasks">
+          <li v-for="item of board.tasks" :key="item.id" draggable="true">
               <Task :item="item" :board="board" :change-status="changeStatus" :delete-task="deleteTask" @changeTitle="changeTitle" class="task_card"/>
-          </div>
-        </div>
+          </li>
+        </ol>
         <form class="add_task_form">
           <input v-model="newTasks[board.id]" type="text" />
           <div @click="addTask(board.id)" class="btn_frame">
@@ -81,7 +81,12 @@ export default defineComponent({
 .tasks {
   max-height: 80vh;
   overflow-y: scroll;
+  list-style-type: none;
 }
+ol{
+  padding-left: 0px;
+}
+
 /* ボード内の各taskカード */
 .task_card {
   margin: 3%;
