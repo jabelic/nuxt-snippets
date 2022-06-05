@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { __boards__ } from '~/module/__mocks__/todo'
+import { __boards__, task } from '~/module/__mocks__/todo'
 import { useTodoArchiveStore } from './todoArchive'
 
 export const useTodoStore = defineStore('todo', {
@@ -11,6 +11,17 @@ export const useTodoStore = defineStore('todo', {
           board.tasks.push({ id: board.tasks.length, done: false, title, tag:[] })
         }
       })
+    },
+    restoreTaskFromArchive(boardId: number, task: task){
+      let idx: number | undefined;
+      for(let i = 0; i < this.boards[boardId].tasks.length; i++){
+        if(this.boards[boardId].tasks[i].id > task.id){
+          idx = i
+          break;
+        }
+      }
+      if(idx)this.boards[boardId].tasks.splice(idx, 0, task)
+      else this.boards[boardId].tasks.push(task)
     },
     changeStatus(boardId: number, id: number, done: boolean) {
       this.boards.forEach((board) => {

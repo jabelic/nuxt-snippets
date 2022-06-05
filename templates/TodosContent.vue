@@ -19,6 +19,22 @@
         </form>
       </div>
     </div>
+    <v-snackbar
+      v-model="isShowSnackbar"
+      :timeout="timeout"
+    >
+    アーカイブしました
+      <!-- <template v-slot:action="{ attrs }"> -->
+        <!-- v-bind="attrs" @click="()=>()" -->
+        <v-btn
+          color="blue"
+          text
+          @click="restoreFromArchive"
+        >
+          元に戻す
+        </v-btn>
+      <!-- </template> -->
+    </v-snackbar>
   </div>
 </template>
 <script lang="ts">
@@ -44,20 +60,34 @@ export default defineComponent({
             todoStore.changeStatus(boardId, id, done);
         };
         const deleteTask = (boardId: number, id: number) => {
-            // TODO: snackbarを表示
             todoStore.deleteTask(boardId, id);
             boards.value = todoStore.boards;
-            console.debug(boards.value[0]);
+            // snackbarを表示
+            isShowSnackbar.value = true
         };
-        const changeTitle = (boardId: number, id: number, title: string)=>{
-          console.debug("sdfchangeTitle")
+        const changeTitle = (boardId: number, id: number, title: string)=>{ 
           todoStore.changeTitle(boardId, id, title);
           boards.value = todoStore.boards;
         }
+
+        /** Snackbar */
+        const isShowSnackbar = ref(false)
+        const timeout = ref(2000)
+        const restoreFromArchive = () =>{
+          const task = archive.getLastArchivedTask
+          if(task){
+            archive.removeArchivedTask(task.boardId, task.task.id)
+            todoStore.restoreTaskFromArchive(task.boardId, task.task)
+            setTimeout(()=>isShowSnackbar.value=false, 500)
+          }
+        }
+
+
         watch(()=>todoStore.allBoards, ()=>{
           boards.value = todoStore.boards;
         }, {deep:true})
-        return { boards, addTask, changeStatus, newTasks, deleteTask, changeTitle };
+
+        return { boards, addTask, changeStatus, newTasks, deleteTask, changeTitle, isShowSnackbar ,timeout, restoreFromArchive};
     },
     components: { Task }
 })

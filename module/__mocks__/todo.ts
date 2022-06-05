@@ -11,9 +11,9 @@ export interface board {
 const __tasks1__: board = {
   id: 0,
   tasks: [
-    { id: 0, done: false, title: 'TITLE',tag:[] },
-    { id: 1, done: false, title: 'TITLE2',tag:[] },
-    { id: 2, done: false, title: 'TITLE3',tag:[] },
+    { id: 0, done: false, title: 'TITLE0',tag:[] },
+    { id: 1, done: false, title: 'TITLE1',tag:[] },
+    { id: 2, done: false, title: 'TITLE2',tag:[] },
   ],
 }
 const __tasks2__ = {
