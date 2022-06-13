@@ -31,6 +31,7 @@
             </button>
         </div>
     </div>
+
   </div>
 </template>
 <script lang="ts">
@@ -54,10 +55,6 @@ export default defineComponent({
             required: true,
             type: Function
         },
-        // changeTitle:{
-        //     required: true,
-        //     type: Function as PropType<(boardId: number, id: number, title: string)=>void>
-        // }
     },
     setup(props, {emit}) {
         const switchEditMode = () =>{
@@ -65,7 +62,6 @@ export default defineComponent({
                 editable.value = true
                 nextTick(()=>{
                     if(input_tag.value){
-                        console.debug(input_tag.value)
                         input_tag.value.value = props.item.title
                         contentsOfEditedTask.title = props.item.title
                         input_tag.value.focus()

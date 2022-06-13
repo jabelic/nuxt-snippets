@@ -19,45 +19,31 @@
         </form>
       </div>
     </div>
+    <v-snackbar
+      v-model="isShowSnackbar"
+      :timeout="timeout"
+    >
+      アーカイブしました
+        <v-btn
+          color="blue"
+          text
+          @click="restoreFromArchive"
+        >
+          元に戻す
+        </v-btn>
+    </v-snackbar>
   </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, ref, watch } from '@nuxtjs/composition-api'
+import { defineComponent } from '@nuxtjs/composition-api'
 import { __boards__ } from '~/module/__mocks__/todo'
-import { useTodoStore } from '~/store/todo'
-import { useTodoArchiveStore } from '~/store/todoArchive'
 import Task from '~/components/Task.vue'
+import { useTodo } from '~/module/todo.ts'
 
 export default defineComponent({
     setup() {
-        const todoStore = useTodoStore();
-        const archive = useTodoArchiveStore();
-        const boards = ref(todoStore.boards);
-        const newTasks = computed(() => [...Array(__boards__.length)].map((_, i) => ""));
-        const addTask = (boardId: number) => {
-            if (!newTasks.value[boardId])
-                return;
-            todoStore.addTask(boardId, newTasks.value[boardId]);
-            newTasks.value[boardId] = "";
-        };
-        const changeStatus = (boardId: number, id: number, done: boolean) => {
-            todoStore.changeStatus(boardId, id, done);
-        };
-        const deleteTask = (boardId: number, id: number) => {
-            // TODO: snackbarを表示
-            todoStore.deleteTask(boardId, id);
-            boards.value = todoStore.boards;
-            console.debug(boards.value[0]);
-        };
-        const changeTitle = (boardId: number, id: number, title: string)=>{
-          console.debug("sdfchangeTitle")
-          todoStore.changeTitle(boardId, id, title);
-          boards.value = todoStore.boards;
-        }
-        watch(()=>todoStore.allBoards, ()=>{
-          boards.value = todoStore.boards;
-        }, {deep:true})
-        return { boards, addTask, changeStatus, newTasks, deleteTask, changeTitle };
+        const {boards, addTask, changeStatus, newTasks, deleteTask, changeTitle, isShowSnackbar ,timeout, restoreFromArchive} = useTodo()
+        return { boards, addTask, changeStatus, newTasks, deleteTask, changeTitle, isShowSnackbar ,timeout, restoreFromArchive};
     },
     components: { Task }
 })

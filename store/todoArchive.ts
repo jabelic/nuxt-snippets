@@ -15,8 +15,8 @@ export const useTodoArchiveStore = defineStore('todoArchive', {
         }
     },
     getters: {
-        lastArchivedTask(state){
-            return (taskId: number, boardId: number)=> state.archives.find((it)=>it.boardId===boardId && it.task.id===taskId)
+        getLastArchivedTask(state){
+            if(state.archives.length) return state.archives[state.archives.length-1]
         }
     }
 })
