@@ -25,8 +25,9 @@ $ yarn generate
 - [x] keep-alive
 - [x] provide/inject
 - [x] nuxt-child
-- [ ] CRUD
-- [ ] pinia(store)
+- [x] CRUD
+- [x] pinia(store)
+- [ ] pagination
 - [ ] e2e test
 - [ ] Microsoft Clarity
 - [ ] serverMiddleware
