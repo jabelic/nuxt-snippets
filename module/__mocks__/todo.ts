@@ -20,6 +20,6 @@ const __tasks2__ = {
   id: 1,
   tasks: Array(50)
     .fill({ id: 0, done: false, title: 'TITLE', tag:[] })
-    .map((_, i) => ({ id: i, done: false, title: `TITLE${i}`,tag:[] })),
+    .map((_: any, i: number) => ({ id: i, done: false, title: `TITLE${i}`,tag:[] })),
 }
 export const __boards__ = [__tasks1__, __tasks2__]
